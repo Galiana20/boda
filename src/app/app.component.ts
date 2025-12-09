@@ -9,6 +9,7 @@ import { InputTextareaModule } from 'primeng/inputtextarea';
 import { CheckboxModule } from 'primeng/checkbox';
 import { TimelineModule } from 'primeng/timeline';
 import { DividerModule } from 'primeng/divider';
+import { GoogleSheetsService } from './services/google-sheets.service';
 
 interface TimelineEvent {
   time: string;
@@ -37,6 +38,9 @@ interface TimelineEvent {
 export class AppComponent {
   title = 'Boda Eric y Lourdes';
 
+  // Estado de envío
+  enviando: boolean = false;
+
   // Datos del formulario
   nombre: string = '';
   apellido: string = '';
@@ -47,8 +51,8 @@ export class AppComponent {
 
   // Datos de la boda
   numeroCuenta: string = 'ES19 0128 7820 8401 0383 8162';
-  telefono1: string = '+34 XXX XXX XXX';
-  telefono2: string = '+34 XXX XXX XXX';
+  telefono1: string = '+34 607 94 31 26';
+  telefono2: string = '+34 628 52 51 72';
 
   // Timeline de eventos
   events: TimelineEvent[] = [
@@ -66,7 +70,15 @@ export class AppComponent {
     lng: -8.3892
   };
 
+  constructor(private googleSheetsService: GoogleSheetsService) {}
+
   enviarFormulario() {
+    // Validación básica
+    if (!this.nombre || !this.apellido) {
+      alert('Por favor, completa tu nombre y apellido.');
+      return;
+    }
+
     const datos = {
       nombre: this.nombre,
       apellido: this.apellido,
@@ -76,10 +88,26 @@ export class AppComponent {
       alergenos: this.alergenos
     };
 
-    console.log('Formulario enviado:', datos);
-    alert('¡Gracias por confirmar tu asistencia! Nos vemos el 20 de junio.');
+    this.enviando = true;
 
-    // Limpiar formulario
+    this.googleSheetsService.enviarDatos(datos).subscribe({
+      next: (response) => {
+        console.log('Eric y Lourdes:');
+        alert('¡Gracias por confirmar tu asistencia! Nos vemos el 20 de junio.');
+
+        // Limpiar formulario
+        this.limpiarFormulario();
+        this.enviando = false;
+      },
+      error: (error) => {
+        console.error('Error al enviar:', error);
+        alert('Hubo un error al enviar tu confirmación. Por favor, inténtalo de nuevo o contacta con nosotros.');
+        this.enviando = false;
+      }
+    });
+  }
+
+  private limpiarFormulario() {
     this.nombre = '';
     this.apellido = '';
     this.tieneAcompanante = false;

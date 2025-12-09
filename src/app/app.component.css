@@ -7,70 +7,51 @@
 
 /* Secci�n Hero */
 .hero-section {
-  position: relative;
   width: 100%;
-  height: 700px;
-  overflow: hidden;
   margin-bottom: 3rem;
 }
 
-.hero-overlay {
-  position: relative;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(to bottom, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.3) 100%);
-}
-
 .hero-image {
-  position: absolute;
-  top: 0;
-  left: 0;
   width: 100%;
-  height: 100%;
+  height: 700px;
   object-fit: cover;
   object-position: center top;
   filter: brightness(0.95) contrast(1.05);
-  z-index: -1;
+  display: block;
 }
 
 .hero-content {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  display: none;
+  position: static;
   text-align: center;
-  color: white;
-  text-shadow: 3px 3px 12px rgba(0, 0, 0, 0.8);
-  z-index: 10;
-  background: rgba(0, 0, 0, 0.25);
-  padding: 3rem 4rem;
-  border-radius: 20px;
-  backdrop-filter: blur(8px);
-  border: 2px solid rgba(255, 255, 255, 0.2);
+  color: #1e40af;
+  padding: 2rem 1rem;
+  background: white;
 }
 
 .couple-names {
-  font-size: 4.5rem;
+  font-size: 2.5rem;
   font-weight: 300;
   margin: 0;
   font-family: 'Playfair Display', 'Georgia', serif;
-  letter-spacing: 3px;
-  animation: fadeIn 2s ease-in;
+  letter-spacing: 2px;
+  color: #1e40af;
 }
 
 .wedding-date {
-  font-size: 1.8rem;
-  margin-top: 1.5rem;
+  font-size: 1.3rem;
+  margin-top: 1rem;
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 0.8rem;
+  gap: 0.6rem;
   font-family: 'Georgia', serif;
-  animation: fadeIn 2s ease-in 0.5s backwards;
+  color: #4b5563;
 }
 
 .wedding-date i {
-  font-size: 2rem;
+  font-size: 1.4rem;
+  color: #3b82f6;
 }
 
 @keyframes fadeIn {
@@ -387,14 +368,6 @@ section {
 
 /* Responsive */
 @media (max-width: 968px) {
-  .couple-names {
-    font-size: 3rem;
-  }
-
-  .wedding-date {
-    font-size: 1.3rem;
-  }
-
   .location-content {
     grid-template-columns: 1fr;
   }
@@ -407,27 +380,27 @@ section {
     font-size: 2rem;
   }
 
-  .hero-section {
-    height: 400px;
+  .hero-image {
+    height: 500px;
   }
 
   .hero-content {
-    padding: 2rem 2.5rem;
+    display: block;
   }
 }
 
 @media (max-width: 640px) {
+  .hero-image {
+    height: 400px;
+  }
+
   .couple-names {
-    font-size: 2.5rem;
+    font-size: 2rem;
     letter-spacing: 1px;
   }
 
   .wedding-date {
     font-size: 1.1rem;
-  }
-
-  .hero-content {
-    padding: 1.5rem 2rem;
   }
 
   section {

@@ -1,8 +1,16 @@
 <div class="wedding-container">
   <!-- Sección Hero - Imagen de la pareja con nombres y fecha -->
   <section class="hero-section">
-    <div class="hero-overlay">
+    <picture>
+      <source media="(max-width: 768px)" srcset="assets/images/foto_respon.jpeg">
       <img src="assets/images/pareja_perros.png" alt="Eric y Lourdes" class="hero-image">
+    </picture>
+    <div class="hero-content">
+      <h1 class="couple-names">Eric y Lourdes</h1>
+      <div class="wedding-date">
+        <i class="pi pi-calendar"></i>
+        <span>20 de junio</span>
+      </div>
     </div>
   </section>
 
@@ -48,8 +56,9 @@
         </div>
       </div>
 
-      <p-divider></p-divider>
-
+      
+@if(false){
+  <p-divider></p-divider>
       <!-- Sección Horarios de Buses -->
       <div class="bus-schedules">
         <div class="section-subtitle">
@@ -116,9 +125,11 @@
           <p>Los buses saldrán desde la Plaza de Forcarei. Por favor, llega con 10 minutos de antelación.</p>
         </div>
       </div>
+    }
     </p-card>
-  </section>
 
+  </section>
+@if(false){
   <!-- Sección Timeline del Día -->
   <section class="timeline-section">
     <p-card>
@@ -140,7 +151,7 @@
       </p-timeline>
     </p-card>
   </section>
-
+}
   <!-- Sección Formulario de Confirmación -->
   <section class="form-section">
     <p-card>
@@ -221,8 +232,9 @@
         <div class="form-actions">
           <p-button
             type="submit"
-            label="Confirmar Asistencia"
-            icon="pi pi-send"
+            [label]="enviando ? 'Enviando...' : 'Confirmar Asistencia'"
+            [icon]="enviando ? 'pi pi-spin pi-spinner' : 'pi pi-send'"
+            [disabled]="enviando"
             styleClass="p-button-lg">
           </p-button>
         </div>
