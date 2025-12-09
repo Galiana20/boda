@@ -1,0 +1,298 @@
+<div class="wedding-container">
+  <!-- Sección Hero - Imagen de la pareja con nombres y fecha -->
+  <section class="hero-section">
+    <div class="hero-overlay">
+      <img src="assets/images/pareja_perros.png" alt="Eric y Lourdes" class="hero-image">
+    </div>
+  </section>
+
+  <!-- Sección del Lugar -->
+  <section class="location-section">
+    <p-card>
+      <div class="section-title">
+        <i class="pi pi-map-marker"></i>
+        <h2>El Lugar</h2>
+      </div>
+
+      <div class="location-content">
+        <div class="location-info">
+          <h3>{{ ubicacion.nombre }}</h3>
+          <p class="location-description">
+            Un lugar mágico e histórico donde celebraremos nuestro día especial.
+            El Monasterio de Aciveiro es un antiguo monasterio benedictino del siglo XII
+            ubicado en un entorno natural incomparable, que combina historia, belleza
+            arquitectónica y naturaleza.
+          </p>
+          <p class="location-address">
+            <i class="pi pi-map"></i>
+            {{ ubicacion.direccion }}
+          </p>
+          <p-button
+            label="Ver en Google Maps"
+            icon="pi pi-directions"
+            (onClick)="abrirMaps()"
+            styleClass="p-button-outlined p-button-secondary">
+          </p-button>
+        </div>
+
+        <div class="map-container">
+          <iframe
+            width="100%"
+            height="300"
+            style="border:0; border-radius: 10px;"
+            loading="lazy"
+            allowfullscreen
+            referrerpolicy="no-referrer-when-downgrade"
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d11654.123456789!2d-8.3892!3d42.6178!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd2f3e1234567890%3A0x1234567890abcdef!2sMonasterio%20de%20Aciveiro!5e0!3m2!1ses!2ses!4v1234567890123!5m2!1ses!2ses">
+          </iframe>
+        </div>
+      </div>
+
+      <p-divider></p-divider>
+
+      <!-- Sección Horarios de Buses -->
+      <div class="bus-schedules">
+        <div class="section-subtitle">
+          <i class="pi pi-car"></i>
+          <h3>Horarios de Buses</h3>
+        </div>
+
+        <div class="schedules-grid">
+          <!-- Buses de Ida -->
+          <div class="schedule-card">
+            <div class="schedule-header ida">
+              <i class="pi pi-arrow-right"></i>
+              <h4>Ida al Monasterio</h4>
+            </div>
+            <div class="schedule-subtitle">Salida desde Forcarei</div>
+            <div class="schedule-list">
+              <div class="schedule-item">
+                <i class="pi pi-clock"></i>
+                <span class="time">11:30</span>
+                <span class="description">Primera salida</span>
+              </div>
+              <div class="schedule-item">
+                <i class="pi pi-clock"></i>
+                <span class="time">12:00</span>
+                <span class="description">Segunda salida</span>
+              </div>
+              <div class="schedule-item">
+                <i class="pi pi-clock"></i>
+                <span class="time">12:30</span>
+                <span class="description">Última salida</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Buses de Vuelta -->
+          <div class="schedule-card">
+            <div class="schedule-header vuelta">
+              <i class="pi pi-arrow-left"></i>
+              <h4>Vuelta a Forcarei</h4>
+            </div>
+            <div class="schedule-subtitle">Salida desde el Monasterio</div>
+            <div class="schedule-list">
+              <div class="schedule-item">
+                <i class="pi pi-clock"></i>
+                <span class="time">21:00</span>
+                <span class="description">Primera vuelta</span>
+              </div>
+              <div class="schedule-item">
+                <i class="pi pi-clock"></i>
+                <span class="time">22:30</span>
+                <span class="description">Segunda vuelta</span>
+              </div>
+              <div class="schedule-item">
+                <i class="pi pi-clock"></i>
+                <span class="time">00:30</span>
+                <span class="description">Última vuelta</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="bus-note">
+          <i class="pi pi-info-circle"></i>
+          <p>Los buses saldrán desde la Plaza de Forcarei. Por favor, llega con 10 minutos de antelación.</p>
+        </div>
+      </div>
+    </p-card>
+  </section>
+
+  <!-- Sección Timeline del Día -->
+  <section class="timeline-section">
+    <p-card>
+      <div class="section-title">
+        <i class="pi pi-clock"></i>
+        <h2>Programa del Día</h2>
+      </div>
+
+      <p-timeline [value]="events" align="alternate" styleClass="custom-timeline">
+        <ng-template pTemplate="content" let-event>
+          <div class="timeline-event">
+            <div class="timeline-time">{{ event.time }}</div>
+            <div class="timeline-title">
+              <i [class]="event.icon"></i>
+              {{ event.title }}
+            </div>
+          </div>
+        </ng-template>
+      </p-timeline>
+    </p-card>
+  </section>
+
+  <!-- Sección Formulario de Confirmación -->
+  <section class="form-section">
+    <p-card>
+      <div class="section-title">
+        <i class="pi pi-check-circle"></i>
+        <h2>Confirma tu Asistencia</h2>
+      </div>
+
+      <form class="confirmation-form" (ngSubmit)="enviarFormulario()">
+        <div class="form-grid">
+          <div class="form-field">
+            <label for="nombre">Nombre *</label>
+            <input
+              pInputText
+              id="nombre"
+              [(ngModel)]="nombre"
+              name="nombre"
+              required
+              placeholder="Tu nombre">
+          </div>
+
+          <div class="form-field">
+            <label for="apellido">Apellido *</label>
+            <input
+              pInputText
+              id="apellido"
+              [(ngModel)]="apellido"
+              name="apellido"
+              required
+              placeholder="Tu apellido">
+          </div>
+        </div>
+
+        <div class="form-field checkbox-field">
+          <p-checkbox
+            [(ngModel)]="tieneAcompanante"
+            [binary]="true"
+            name="tieneAcompanante"
+            inputId="tieneAcompanante">
+          </p-checkbox>
+          <label for="tieneAcompanante">¿Vienes acompañado/a?</label>
+        </div>
+
+        <div class="form-grid" *ngIf="tieneAcompanante">
+          <div class="form-field">
+            <label for="nombreAcompanante">Nombre del Acompañante</label>
+            <input
+              pInputText
+              id="nombreAcompanante"
+              [(ngModel)]="nombreAcompanante"
+              name="nombreAcompanante"
+              placeholder="Nombre">
+          </div>
+
+          <div class="form-field">
+            <label for="apellidoAcompanante">Apellido del Acompañante</label>
+            <input
+              pInputText
+              id="apellidoAcompanante"
+              [(ngModel)]="apellidoAcompanante"
+              name="apellidoAcompanante"
+              placeholder="Apellido">
+          </div>
+        </div>
+
+        <div class="form-field">
+          <label for="alergenos">Alergias o Intolerancias Alimentarias</label>
+          <textarea
+            pInputTextarea
+            id="alergenos"
+            [(ngModel)]="alergenos"
+            name="alergenos"
+            rows="4"
+            placeholder="Por favor, indícanos si tienes alguna alergia o intolerancia alimentaria para poder atenderte mejor">
+          </textarea>
+        </div>
+
+        <div class="form-actions">
+          <p-button
+            type="submit"
+            label="Confirmar Asistencia"
+            icon="pi pi-send"
+            styleClass="p-button-lg">
+          </p-button>
+        </div>
+      </form>
+    </p-card>
+  </section>
+
+  <!-- Sección Regalo -->
+  <section class="gift-section">
+    <p-card>
+      <div class="section-title">
+        <i class="pi pi-gift"></i>
+        <h2>Nuestro Regalo</h2>
+      </div>
+
+      <div class="gift-content">
+        <p class="gift-message">
+          Vuestra compañía es nuestro mejor regalo. Si aún así queréis tener un detalle con nosotros,
+          estaremos encantados de recibir vuestra contribución.
+        </p>
+
+        <p-divider></p-divider>
+
+        <div class="account-info">
+          <h3>Número de Cuenta</h3>
+          <div class="account-number">
+            <span>{{ numeroCuenta }}</span>
+            <p-button
+              icon="pi pi-copy"
+              (onClick)="copiarCuenta()"
+              [text]="true"
+              [rounded]="true"
+              styleClass="copy-btn">
+            </p-button>
+          </div>
+        </div>
+
+        <p-divider></p-divider>
+
+        <div class="contact-info">
+          <h3>Contacto</h3>
+          <div class="phones">
+            <div class="phone-item">
+              <i class="pi pi-phone"></i>
+              <span>{{ telefono1 }}</span>
+            </div>
+            <div class="phone-item">
+              <i class="pi pi-phone"></i>
+              <span>{{ telefono2 }}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </p-card>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-content">
+      <div class="footer-image">
+        <img src="assets/images/perros.jpeg" alt="Nuestros queridos compañeros" class="dogs-image">
+      </div>
+      <p class="footer-text">¡Nos vemos el 20 de junio!</p>
+      <p class="footer-hearts">
+        <i class="pi pi-heart-fill"></i>
+        <i class="pi pi-heart-fill"></i>
+        <i class="pi pi-heart-fill"></i>
+      </p>
+    </div>
+  </footer>
+</div>
+
+<router-outlet />

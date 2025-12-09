@@ -1,0 +1,682 @@
+/* Contenedor Principal */
+.wedding-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0;
+}
+
+/* Secci�n Hero */
+.hero-section {
+  position: relative;
+  width: 100%;
+  height: 700px;
+  overflow: hidden;
+  margin-bottom: 3rem;
+}
+
+.hero-overlay {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to bottom, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.3) 100%);
+}
+
+.hero-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+  filter: brightness(0.95) contrast(1.05);
+  z-index: -1;
+}
+
+.hero-content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  color: white;
+  text-shadow: 3px 3px 12px rgba(0, 0, 0, 0.8);
+  z-index: 10;
+  background: rgba(0, 0, 0, 0.25);
+  padding: 3rem 4rem;
+  border-radius: 20px;
+  backdrop-filter: blur(8px);
+  border: 2px solid rgba(255, 255, 255, 0.2);
+}
+
+.couple-names {
+  font-size: 4.5rem;
+  font-weight: 300;
+  margin: 0;
+  font-family: 'Playfair Display', 'Georgia', serif;
+  letter-spacing: 3px;
+  animation: fadeIn 2s ease-in;
+}
+
+.wedding-date {
+  font-size: 1.8rem;
+  margin-top: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.8rem;
+  font-family: 'Georgia', serif;
+  animation: fadeIn 2s ease-in 0.5s backwards;
+}
+
+.wedding-date i {
+  font-size: 2rem;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Secciones Comunes */
+section {
+  margin-bottom: 3rem;
+  padding: 0 1.5rem;
+  animation: slideUp 0.8s ease-out;
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* T�tulos de Secci�n */
+.section-title {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 2rem;
+  justify-content: center;
+}
+
+.section-title i {
+  font-size: 2rem;
+  color: #3b82f6;
+}
+
+.section-title h2 {
+  font-size: 2.5rem;
+  color: #1e40af;
+  font-family: 'Playfair Display', 'Georgia', serif;
+  margin: 0;
+  font-weight: 400;
+}
+
+/* Secci�n de Ubicaci�n */
+.location-content {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  align-items: start;
+}
+
+.location-info h3 {
+  font-size: 2rem;
+  color: #1e40af;
+  margin-bottom: 1rem;
+  font-family: 'Georgia', serif;
+}
+
+.location-description {
+  font-size: 1.1rem;
+  line-height: 1.8;
+  color: #4b5563;
+  margin-bottom: 1.5rem;
+  text-align: justify;
+}
+
+.location-address {
+  font-size: 1.2rem;
+  color: #6b7280;
+  margin-bottom: 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.location-address i {
+  color: #3b82f6;
+}
+
+.map-container {
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* Timeline */
+.timeline-section ::ng-deep .p-timeline {
+  padding: 2rem 0;
+}
+
+.timeline-event {
+  padding: 1rem;
+  text-align: center;
+}
+
+.timeline-time {
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: #3b82f6;
+  margin-bottom: 0.5rem;
+  font-family: 'Georgia', serif;
+}
+
+.timeline-title {
+  font-size: 1.3rem;
+  color: #4b5563;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.timeline-title i {
+  font-size: 1.5rem;
+  color: #1e40af;
+}
+
+/* Formulario */
+.confirmation-form {
+  padding: 1rem 0;
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.form-field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.form-field label {
+  font-size: 1.1rem;
+  color: #4b5563;
+  font-weight: 500;
+}
+
+.form-field input,
+.form-field textarea {
+  width: 100%;
+  padding: 0.75rem;
+  font-size: 1rem;
+  border: 2px solid #e5e7eb;
+  border-radius: 8px;
+  transition: border-color 0.3s;
+}
+
+.form-field input:focus,
+.form-field textarea:focus {
+  border-color: #3b82f6;
+  outline: none;
+}
+
+.checkbox-field {
+  flex-direction: row;
+  align-items: center;
+  gap: 0.8rem;
+  margin-bottom: 1.5rem;
+}
+
+.checkbox-field label {
+  margin: 0;
+  cursor: pointer;
+}
+
+.form-actions {
+  display: flex;
+  justify-content: center;
+  margin-top: 2rem;
+}
+
+/* Secci�n de Regalo */
+.gift-content {
+  padding: 1rem 0;
+}
+
+.gift-message {
+  font-size: 1.2rem;
+  line-height: 1.8;
+  color: #4b5563;
+  text-align: center;
+  margin-bottom: 2rem;
+  font-style: italic;
+}
+
+.account-info,
+.contact-info {
+  text-align: center;
+  margin: 2rem 0;
+}
+
+.account-info h3,
+.contact-info h3 {
+  font-size: 1.5rem;
+  color: #1e40af;
+  margin-bottom: 1rem;
+  font-family: 'Georgia', serif;
+}
+
+.account-number {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  background: #dbeafe;
+  padding: 1.5rem;
+  border-radius: 10px;
+  margin: 1rem auto;
+  max-width: 600px;
+}
+
+.account-number span {
+  font-size: 1.3rem;
+  font-weight: bold;
+  color: #1e40af;
+  letter-spacing: 1px;
+  font-family: 'Courier New', monospace;
+}
+
+.phones {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  align-items: center;
+}
+
+.phone-item {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  font-size: 1.2rem;
+  color: #4b5563;
+}
+
+.phone-item i {
+  color: #3b82f6;
+  font-size: 1.3rem;
+}
+
+/* Footer */
+.footer {
+  background: linear-gradient(135deg, #dbeafe 0%, #eff6ff 100%);
+  padding: 3rem 1.5rem;
+  margin-top: 4rem;
+}
+
+.footer-content {
+  text-align: center;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.footer-image {
+  margin-bottom: 2rem;
+}
+
+.dogs-image {
+  max-width: 500px;
+  width: 100%;
+  height: auto;
+  border-radius: 15px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+}
+
+.footer-text {
+  font-size: 2rem;
+  color: #1e40af;
+  font-family: 'Playfair Display', 'Georgia', serif;
+  margin-bottom: 1rem;
+}
+
+.footer-hearts {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  font-size: 2rem;
+  color: #3b82f6;
+}
+
+.footer-hearts i {
+  animation: heartbeat 1.5s ease-in-out infinite;
+}
+
+.footer-hearts i:nth-child(2) {
+  animation-delay: 0.3s;
+}
+
+.footer-hearts i:nth-child(3) {
+  animation-delay: 0.6s;
+}
+
+@keyframes heartbeat {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.2);
+  }
+}
+
+/* Responsive */
+@media (max-width: 968px) {
+  .couple-names {
+    font-size: 3rem;
+  }
+
+  .wedding-date {
+    font-size: 1.3rem;
+  }
+
+  .location-content {
+    grid-template-columns: 1fr;
+  }
+
+  .form-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .section-title h2 {
+    font-size: 2rem;
+  }
+
+  .hero-section {
+    height: 400px;
+  }
+
+  .hero-content {
+    padding: 2rem 2.5rem;
+  }
+}
+
+@media (max-width: 640px) {
+  .couple-names {
+    font-size: 2.5rem;
+    letter-spacing: 1px;
+  }
+
+  .wedding-date {
+    font-size: 1.1rem;
+  }
+
+  .hero-content {
+    padding: 1.5rem 2rem;
+  }
+
+  section {
+    padding: 0 1rem;
+  }
+
+  .section-title h2 {
+    font-size: 1.5rem;
+  }
+
+  .section-title i {
+    font-size: 1.5rem;
+  }
+
+  .footer-text {
+    font-size: 1.5rem;
+  }
+
+  .dogs-image {
+    max-width: 100%;
+  }
+}
+
+/* Estilos para PrimeNG Cards */
+::ng-deep .p-card {
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+  border-radius: 15px;
+  border: none;
+  overflow: hidden;
+}
+
+::ng-deep .p-card .p-card-body {
+  padding: 2.5rem;
+}
+
+::ng-deep .p-button {
+  font-family: 'Georgia', serif;
+  font-size: 1.1rem;
+  padding: 0.8rem 2rem;
+  border-radius: 25px;
+  transition: all 0.3s ease;
+}
+
+::ng-deep .p-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(59, 130, 246, 0.3);
+}
+
+::ng-deep .p-checkbox .p-checkbox-box {
+  border-radius: 4px;
+  border-width: 2px;
+}
+
+::ng-deep .p-inputtext,
+::ng-deep .p-inputtextarea {
+  font-family: 'Georgia', serif;
+}
+
+/* Horarios de Buses */
+.bus-schedules {
+  margin-top: 2rem;
+}
+
+.section-subtitle {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  margin-bottom: 2rem;
+  justify-content: center;
+}
+
+.section-subtitle i {
+  font-size: 1.8rem;
+  color: #3b82f6;
+}
+
+.section-subtitle h3 {
+  font-size: 2rem;
+  color: #1e40af;
+  font-family: 'Playfair Display', 'Georgia', serif;
+  margin: 0;
+  font-weight: 400;
+}
+
+.schedules-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  margin-bottom: 2rem;
+}
+
+.schedule-card {
+  background: linear-gradient(135deg, #f0f9ff 0%, #ffffff 100%);
+  border-radius: 12px;
+  padding: 1.5rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  border: 2px solid #e0f2fe;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.schedule-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+}
+
+.schedule-header {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  margin-bottom: 1rem;
+  padding-bottom: 1rem;
+  border-bottom: 2px solid #dbeafe;
+}
+
+.schedule-header.ida {
+  color: #059669;
+}
+
+.schedule-header.vuelta {
+  color: #dc2626;
+}
+
+.schedule-header i {
+  font-size: 1.5rem;
+}
+
+.schedule-header h4 {
+  margin: 0;
+  font-size: 1.5rem;
+  font-family: 'Georgia', serif;
+  font-weight: 600;
+}
+
+.schedule-subtitle {
+  font-size: 1rem;
+  color: #6b7280;
+  margin-bottom: 1.5rem;
+  text-align: center;
+  font-style: italic;
+}
+
+.schedule-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.schedule-item {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+}
+
+.schedule-item i {
+  color: #3b82f6;
+  font-size: 1.2rem;
+  flex-shrink: 0;
+}
+
+.schedule-item .time {
+  font-size: 1.4rem;
+  font-weight: bold;
+  color: #1e40af;
+  font-family: 'Courier New', monospace;
+  min-width: 60px;
+}
+
+.schedule-item .description {
+  font-size: 1rem;
+  color: #6b7280;
+}
+
+.bus-note {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  padding: 1.2rem;
+  background: #fef3c7;
+  border-left: 4px solid #f59e0b;
+  border-radius: 8px;
+  margin-top: 1.5rem;
+}
+
+.bus-note i {
+  color: #d97706;
+  font-size: 1.3rem;
+  flex-shrink: 0;
+  margin-top: 0.2rem;
+}
+
+.bus-note p {
+  margin: 0;
+  font-size: 1rem;
+  color: #78350f;
+  line-height: 1.6;
+}
+
+/* Responsive para horarios de buses */
+@media (max-width: 968px) {
+  .schedules-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .section-subtitle h3 {
+    font-size: 1.6rem;
+  }
+
+  .schedule-header h4 {
+    font-size: 1.3rem;
+  }
+
+  .schedule-item .time {
+    font-size: 1.2rem;
+  }
+}
+
+@media (max-width: 640px) {
+  .schedule-card {
+    padding: 1.2rem;
+  }
+
+  .section-subtitle h3 {
+    font-size: 1.4rem;
+  }
+
+  .schedule-header h4 {
+    font-size: 1.2rem;
+  }
+
+  .schedule-item {
+    padding: 0.8rem;
+  }
+
+  .schedule-item .time {
+    font-size: 1.1rem;
+    min-width: 50px;
+  }
+
+  .schedule-item .description {
+    font-size: 0.9rem;
+  }
+
+  .bus-note {
+    padding: 1rem;
+    font-size: 0.9rem;
+  }
+}
