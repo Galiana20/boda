@@ -1,0 +1,30 @@
+@if (!yaPaso) {
+  <div class="countdown-wrap">
+    <p class="countdown-label">Faltan</p>
+    <div class="countdown-grid">
+      <div class="countdown-unit">
+        <span class="countdown-num">{{ pad(tiempo.dias) }}</span>
+        <span class="countdown-name">días</span>
+      </div>
+      <span class="countdown-sep">:</span>
+      <div class="countdown-unit">
+        <span class="countdown-num">{{ pad(tiempo.horas) }}</span>
+        <span class="countdown-name">horas</span>
+      </div>
+      <span class="countdown-sep">:</span>
+      <div class="countdown-unit">
+        <span class="countdown-num">{{ pad(tiempo.minutos) }}</span>
+        <span class="countdown-name">minutos</span>
+      </div>
+      <span class="countdown-sep">:</span>
+      <div class="countdown-unit">
+        <span class="countdown-num">{{ pad(tiempo.segundos) }}</span>
+        <span class="countdown-name">segundos</span>
+      </div>
+    </div>
+  </div>
+} @else {
+  <div class="countdown-wrap">
+    <p class="countdown-label">¡Hoy es el gran día!</p>
+  </div>
+}

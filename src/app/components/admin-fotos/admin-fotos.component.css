@@ -1,0 +1,224 @@
+.admin-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 1.5rem;
+  min-height: 100vh;
+  background: #f8fafc;
+}
+
+.admin-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 2rem;
+  padding-bottom: 1rem;
+  border-bottom: 2px solid #e2e8f0;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.admin-title {
+  font-size: 1.8rem;
+  color: #1e40af;
+  font-family: 'Georgia', serif;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.btn-volver {
+  background: none;
+  border: 2px solid #94a3b8;
+  color: #64748b;
+  border-radius: 25px;
+  padding: 0.5rem 1.2rem;
+  font-size: 0.95rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  transition: all 0.2s;
+  font-family: 'Georgia', serif;
+}
+.btn-volver:hover { border-color: #1e40af; color: #1e40af; }
+
+.btn-subir-header {
+  background: linear-gradient(135deg, #1e40af, #3b82f6);
+  color: white;
+  border: none;
+  border-radius: 25px;
+  padding: 0.6rem 1.3rem;
+  font-size: 0.95rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-family: 'Georgia', serif;
+  transition: all 0.2s;
+}
+.btn-subir-header:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(59,130,246,0.35);
+}
+
+.admin-stats {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 2rem;
+  flex-wrap: wrap;
+}
+
+.stat-card {
+  background: white;
+  border-radius: 12px;
+  padding: 1.2rem 2rem;
+  text-align: center;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+  border: 2px solid #e2e8f0;
+  min-width: 100px;
+}
+
+.stat-card.aprobadas { border-color: #86efac; background: #f0fdf4; }
+.stat-card.pendientes { border-color: #fde68a; background: #fffbeb; }
+
+.stat-num {
+  display: block;
+  font-size: 2rem;
+  font-weight: bold;
+  color: #1e40af;
+  font-family: 'Georgia', serif;
+}
+
+.stat-label {
+  font-size: 0.85rem;
+  color: #6b7280;
+}
+
+.admin-cargando, .admin-vacio {
+  text-align: center;
+  padding: 4rem;
+  color: #9ca3af;
+  font-size: 1.2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+.admin-cargando i, .admin-vacio i { font-size: 3rem; }
+
+.admin-seccion { margin-bottom: 2.5rem; }
+
+.seccion-titulo {
+  font-size: 1.3rem;
+  font-family: 'Georgia', serif;
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.pendiente-titulo { color: #d97706; }
+.aprobada-titulo { color: #059669; }
+
+.fotos-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 1rem;
+}
+
+.foto-card {
+  background: white;
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  border: 2px solid transparent;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.foto-card:hover { transform: translateY(-3px); box-shadow: 0 6px 20px rgba(0,0,0,0.12); }
+.foto-card.pendiente { border-color: #fde68a; }
+.foto-card.aprobada { border-color: #86efac; }
+
+.foto-img-wrap {
+  position: relative;
+  aspect-ratio: 1;
+}
+
+.foto-img-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.foto-badge {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  padding: 0.2rem 0.6rem;
+  border-radius: 10px;
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+.pendiente-badge { background: #fef3c7; color: #92400e; }
+.aprobada-badge { background: #d1fae5; color: #065f46; }
+
+.foto-nombre {
+  padding: 0.5rem 0.7rem;
+  font-size: 0.78rem;
+  color: #6b7280;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.foto-acciones {
+  display: flex;
+  gap: 0.5rem;
+  padding: 0.5rem 0.7rem 0.7rem;
+}
+
+.btn-aprobar, .btn-ocultar {
+  flex: 1;
+  border: none;
+  border-radius: 8px;
+  padding: 0.45rem 0.5rem;
+  font-size: 0.82rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.3rem;
+  font-family: 'Georgia', serif;
+  transition: all 0.2s;
+}
+
+.btn-aprobar { background: #d1fae5; color: #065f46; }
+.btn-aprobar:hover:not(:disabled) { background: #059669; color: white; }
+
+.btn-ocultar { background: #fef3c7; color: #92400e; }
+.btn-ocultar:hover:not(:disabled) { background: #d97706; color: white; }
+
+.btn-eliminar {
+  background: #fee2e2;
+  color: #991b1b;
+  border: none;
+  border-radius: 8px;
+  padding: 0.45rem 0.6rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  transition: all 0.2s;
+}
+.btn-eliminar:hover:not(:disabled) { background: #ef4444; color: white; }
+
+button:disabled { opacity: 0.5; cursor: not-allowed; }
+
+@media (max-width: 640px) {
+  .admin-header { flex-direction: column; align-items: flex-start; }
+  .fotos-grid { grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); }
+  .admin-stats { gap: 0.5rem; }
+  .stat-card { padding: 0.8rem 1.2rem; }
+}

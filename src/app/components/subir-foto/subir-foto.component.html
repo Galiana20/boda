@@ -1,0 +1,94 @@
+<div class="upload-overlay" (click)="cerrar.emit()">
+  <div class="upload-modal" (click)="$event.stopPropagation()">
+    <button class="btn-close" (click)="cerrar.emit()">
+      <i class="pi pi-times"></i>
+    </button>
+
+    <h2 class="upload-title">
+      <i class="pi pi-camera"></i> Subir fotos
+    </h2>
+
+    @if (!isAdmin) {
+      <p class="upload-info">
+        <i class="pi pi-info-circle"></i>
+        Tus fotos serán revisadas antes de aparecer en la galería
+      </p>
+    } @else {
+      <p class="upload-info admin">
+        <i class="pi pi-shield"></i>
+        Admin: las fotos se publicarán directamente
+      </p>
+    }
+
+    <!-- Zona de selección -->
+    @if (!subiendo && completados === 0) {
+      <label class="drop-zone" [class.has-files]="archivosSeleccionados.length > 0">
+        <input type="file" accept="image/*" multiple (change)="onFileChange($event)" hidden>
+        @if (archivosSeleccionados.length === 0) {
+          <div class="drop-placeholder">
+            <i class="pi pi-cloud-upload"></i>
+            <span>Toca para seleccionar fotos</span>
+            <span class="drop-hint">JPG, PNG, WEBP</span>
+          </div>
+        } @else {
+          <div class="previews-grid">
+            @for (preview of previews; track $index) {
+              <div class="preview-item">
+                <img [src]="preview" alt="preview">
+                <button type="button" class="preview-remove" (click)="$event.preventDefault(); quitarArchivo($index)">
+                  <i class="pi pi-times"></i>
+                </button>
+              </div>
+            }
+            <div class="preview-add">
+              <i class="pi pi-plus"></i>
+            </div>
+          </div>
+        }
+      </label>
+
+      @if (archivosSeleccionados.length > 0) {
+        <p class="files-count">
+          {{ archivosSeleccionados.length }} foto{{ archivosSeleccionados.length > 1 ? 's' : '' }} seleccionada{{ archivosSeleccionados.length > 1 ? 's' : '' }}
+        </p>
+        <button class="btn-subir" (click)="subir()">
+          <i class="pi pi-upload"></i>
+          Subir {{ archivosSeleccionados.length > 1 ? 'fotos' : 'foto' }}
+        </button>
+      }
+    }
+
+    <!-- Progreso -->
+    @if (subiendo || completados > 0) {
+      <div class="progreso-lista">
+        @for (archivo of archivosSeleccionados; track $index) {
+          <div class="progreso-item">
+            <img [src]="previews[$index]" alt="preview" class="progreso-thumb">
+            <div class="progreso-info">
+              <span class="progreso-nombre">{{ archivo.name | slice:0:30 }}{{ archivo.name.length > 30 ? '...' : '' }}</span>
+              <div class="progreso-bar">
+                <div class="progreso-fill" [style.width.%]="progreso[$index]"></div>
+              </div>
+              <span class="progreso-pct">{{ progreso[$index] }}%</span>
+            </div>
+          </div>
+        }
+      </div>
+
+      @if (completados === archivosSeleccionados.length && !subiendo) {
+        <div class="exito">
+          <i class="pi pi-check-circle"></i>
+          <span>¡Fotos subidas correctamente!</span>
+        </div>
+      }
+    }
+
+    @if (errores.length > 0) {
+      <div class="errores">
+        @for (e of errores; track $index) {
+          <p class="error-msg"><i class="pi pi-exclamation-circle"></i> {{ e }}</p>
+        }
+      </div>
+    }
+  </div>
+</div>

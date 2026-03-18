@@ -1,0 +1,196 @@
+<div class="wedding-container">
+
+  <!-- ═══ HERO ═══ -->
+  <section class="hero-section">
+    <picture>
+      <source media="(max-width: 768px)" srcset="assets/images/foto_respon.png">
+      <img src="assets/images/foto_respon1.png" alt="Eric y Lourdes" class="hero-image">
+    </picture>
+    <div class="hero-overlay">
+      <div class="hero-text">
+        <p class="hero-pretitle">os invitan a su boda</p>
+        <h1 class="couple-names">Eric <span class="hero-amp">&amp;</span> Lourdes</h1>
+        <div class="hero-date">
+          <span class="hero-date-line"></span>
+          <span>20 de junio · 2026</span>
+          <span class="hero-date-line"></span>
+        </div>
+      </div>
+    </div>
+
+    <div class="hero-countdown">
+      <app-cuenta-atras></app-cuenta-atras>
+    </div>
+
+    <div class="scroll-hint">
+      <span></span>
+    </div>
+  </section>
+
+  <!-- ═══ LUGAR ═══ -->
+  <section class="section location-section" reveal>
+    <div class="section-header" reveal [revealDelay]="100">
+      <div class="section-icon">
+        <i class="pi pi-map-marker"></i>
+      </div>
+      <h2 class="section-title">El Lugar</h2>
+      <div class="section-divider"></div>
+    </div>
+
+    <div class="location-content" reveal [revealDelay]="200">
+      <div class="location-info">
+        <h3 class="location-name">{{ ubicacion.nombre }}</h3>
+        <p class="location-description">
+          Un lugar mágico e histórico donde celebraremos nuestro día especial.
+          El Monasterio de Aciveiro es un antiguo monasterio benedictino del siglo XII
+          ubicado en un entorno natural incomparable, que combina historia, belleza
+          arquitectónica y naturaleza.
+        </p>
+        <p class="location-address">
+          <i class="pi pi-map-marker"></i>
+          {{ ubicacion.direccion }}
+        </p>
+        <button class="btn-maps" (click)="abrirMaps()">
+          <i class="pi pi-directions"></i>
+          Ver en Google Maps
+        </button>
+      </div>
+      <div class="map-container">
+        <iframe
+          width="100%"
+          height="320"
+          style="border:0;"
+          loading="lazy"
+          allowfullscreen
+          referrerpolicy="no-referrer-when-downgrade"
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d11654.123456789!2d-8.3892!3d42.6178!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd2f3e1234567890%3A0x1234567890abcdef!2sMonasterio%20de%20Aciveiro!5e0!3m2!1ses!2ses!4v1234567890123!5m2!1ses!2ses">
+        </iframe>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ CONFIRMACIÓN ═══ -->
+  <section class="form-bg" reveal>
+    <div class="section form-section">
+      <div class="section-header" reveal [revealDelay]="100">
+        <div class="section-icon">
+          <i class="pi pi-check-circle"></i>
+        </div>
+        <h2 class="section-title">Confirma tu Asistencia</h2>
+        <div class="section-divider"></div>
+      </div>
+
+      <div class="form-wrap" reveal [revealDelay]="200">
+        <form class="confirmation-form" (ngSubmit)="enviarFormulario()">
+          <div class="form-grid">
+            <div class="form-field">
+              <label for="nombre">Nombre *</label>
+              <input id="nombre" [(ngModel)]="nombre" name="nombre" required placeholder="Tu nombre">
+            </div>
+            <div class="form-field">
+              <label for="apellido">Apellido *</label>
+              <input id="apellido" [(ngModel)]="apellido" name="apellido" required placeholder="Tu apellido">
+            </div>
+          </div>
+
+          <div class="form-field checkbox-field">
+            <label class="check-label">
+              <input type="checkbox" [(ngModel)]="tieneAcompanante" name="tieneAcompanante">
+              <span class="check-box"></span>
+              <span>¿Vienes acompañado/a?</span>
+            </label>
+          </div>
+
+          @if (tieneAcompanante) {
+            <div class="form-grid">
+              <div class="form-field">
+                <label for="nombreAcompanante">Nombre del Acompañante</label>
+                <input id="nombreAcompanante" [(ngModel)]="nombreAcompanante" name="nombreAcompanante" placeholder="Nombre">
+              </div>
+              <div class="form-field">
+                <label for="apellidoAcompanante">Apellido del Acompañante</label>
+                <input id="apellidoAcompanante" [(ngModel)]="apellidoAcompanante" name="apellidoAcompanante" placeholder="Apellido">
+              </div>
+            </div>
+          }
+
+          <div class="form-field">
+            <label for="alergenos">Alergias o Intolerancias Alimentarias</label>
+            <textarea id="alergenos" [(ngModel)]="alergenos" name="alergenos" rows="4"
+              placeholder="Indícanos si tienes alguna alergia o intolerancia alimentaria">
+            </textarea>
+          </div>
+
+          <div class="form-actions">
+            <button type="submit" class="btn-primary" [disabled]="enviando">
+              <i class="pi" [class.pi-send]="!enviando" [class.pi-spin]="enviando" [class.pi-spinner]="enviando"></i>
+              {{ enviando ? 'Enviando...' : 'Confirmar Asistencia' }}
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ REGALO ═══ -->
+  <section class="section gift-section" reveal>
+    <div class="section-header" reveal [revealDelay]="100">
+      <div class="section-icon">
+        <i class="pi pi-gift"></i>
+      </div>
+      <h2 class="section-title">Nuestro Regalo</h2>
+      <div class="section-divider"></div>
+    </div>
+
+    <div class="gift-content" reveal [revealDelay]="200">
+      <p class="gift-message">
+        Vuestra compañía es nuestro mejor regalo. Si aún así queréis tener un detalle con nosotros,
+        estaremos encantados de recibir vuestra contribución.
+      </p>
+
+      <div class="gift-grid">
+        <div class="gift-box">
+          <span class="gift-box-label">Número de Cuenta</span>
+          <div class="account-number">
+            <span>{{ numeroCuenta }}</span>
+            <button class="btn-copy" (click)="copiarCuenta()" title="Copiar">
+              <i class="pi pi-copy"></i>
+            </button>
+          </div>
+        </div>
+
+        <div class="gift-box">
+          <span class="gift-box-label">Contacto</span>
+          <div class="phones">
+            <a [href]="tel1Href" class="phone-item">
+              <i class="pi pi-phone"></i>
+              <span>{{ telefono1 }}</span>
+            </a>
+            <a [href]="tel2Href" class="phone-item">
+              <i class="pi pi-phone"></i>
+              <span>{{ telefono2 }}</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ FOOTER ═══ -->
+  <footer class="footer" reveal>
+    <div class="footer-content">
+      <img src="assets/images/perros.jpeg" alt="Nuestros compañeros" class="dogs-image">
+      <p class="footer-text">¡Nos vemos el 20 de junio!</p>
+      <div class="footer-hearts">
+        <i class="pi pi-heart-fill"></i>
+        <i class="pi pi-heart-fill"></i>
+        <i class="pi pi-heart-fill"></i>
+      </div>
+    </div>
+  </footer>
+
+</div>
+
+@if (mostrarLogin) {
+  <app-login (cerrar)="mostrarLogin = false"></app-login>
+}

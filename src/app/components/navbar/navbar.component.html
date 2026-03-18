@@ -1,0 +1,74 @@
+<nav class="navbar" [class.scrolled]="scrolled || !isHero" [class.menu-open]="menuAbierto">
+  <!-- Logo -->
+  <a class="nav-logo" routerLink="/" (click)="cerrarMenu()">
+    <span class="logo-initials">E</span>
+    <span class="logo-amp">&amp;</span>
+    <span class="logo-initials">L</span>
+  </a>
+
+  <!-- Links desktop -->
+  <div class="nav-links">
+    <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}" class="nav-link">
+      Inicio
+    </a>
+    <a routerLink="/galeria" routerLinkActive="active" class="nav-link">
+      Galería
+    </a>
+  </div>
+
+  <!-- Acciones desktop -->
+  <div class="nav-actions">
+    @if (canUpload) {
+      <button class="nav-icon-btn" (click)="mostrarSubir = true" title="Subir foto">
+        <i class="pi pi-camera"></i>
+      </button>
+    }
+    @if (isAdmin) {
+      <button class="nav-icon-btn nav-icon-admin" (click)="irAdmin()" title="Panel admin">
+        <i class="pi pi-shield"></i>
+      </button>
+    }
+    <button class="nav-btn-login" (click)="mostrarLogin = true">
+      <i class="pi" [class.pi-user]="!isLoggedIn" [class.pi-user-edit]="isLoggedIn"></i>
+      {{ isLoggedIn ? 'Cuenta' : 'Acceder' }}
+    </button>
+  </div>
+
+  <!-- Hamburger mobile -->
+  <button class="hamburger" (click)="menuAbierto = !menuAbierto" [class.active]="menuAbierto">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- Menú móvil -->
+@if (menuAbierto) {
+  <div class="mobile-menu" [class.scrolled]="scrolled || !isHero">
+    <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}" class="mobile-link" (click)="cerrarMenu()">
+      <i class="pi pi-home"></i> Inicio
+    </a>
+    <a routerLink="/galeria" routerLinkActive="active" class="mobile-link" (click)="cerrarMenu()">
+      <i class="pi pi-images"></i> Galería
+    </a>
+    @if (canUpload) {
+      <button class="mobile-link" (click)="mostrarSubir = true; cerrarMenu()">
+        <i class="pi pi-camera"></i> Subir foto
+      </button>
+    }
+    @if (isAdmin) {
+      <button class="mobile-link mobile-link-admin" (click)="irAdmin()">
+        <i class="pi pi-shield"></i> Panel admin
+      </button>
+    }
+    <button class="mobile-link mobile-link-login" (click)="mostrarLogin = true; cerrarMenu()">
+      <i class="pi" [class.pi-user]="!isLoggedIn" [class.pi-user-edit]="isLoggedIn"></i>
+      {{ isLoggedIn ? 'Mi cuenta' : 'Acceder' }}
+    </button>
+  </div>
+}
+
+@if (mostrarLogin) {
+  <app-login (cerrar)="mostrarLogin = false"></app-login>
+}
+@if (mostrarSubir) {
+  <app-subir-foto (cerrar)="mostrarSubir = false"></app-subir-foto>
+}

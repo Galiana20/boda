@@ -1,0 +1,122 @@
+<div class="admin-container">
+  <!-- Header -->
+  <header class="admin-header">
+    <button class="btn-volver" (click)="volver()">
+      <i class="pi pi-arrow-left"></i> Volver
+    </button>
+    <h1 class="admin-title">
+      <i class="pi pi-shield"></i> Panel de Fotos
+    </h1>
+    <button class="btn-subir-header" (click)="mostrarSubir = true">
+      <i class="pi pi-camera"></i> Subir fotos
+    </button>
+  </header>
+
+  @if (cargando) {
+    <div class="admin-cargando">
+      <i class="pi pi-spin pi-spinner"></i> Cargando fotos...
+    </div>
+  } @else {
+
+  <!-- Stats (dentro del bloque cargado para tener los datos correctos) -->
+  <div class="admin-stats">
+    <div class="stat-card">
+      <span class="stat-num">{{ fotos.length }}</span>
+      <span class="stat-label">Total</span>
+    </div>
+    <div class="stat-card aprobadas">
+      <span class="stat-num">{{ fotosAprobadas.length }}</span>
+      <span class="stat-label">Publicadas</span>
+    </div>
+    <div class="stat-card pendientes">
+      <span class="stat-num">{{ fotosPendientes.length }}</span>
+      <span class="stat-label">Pendiente</span>
+    </div>
+  </div>
+
+    <!-- Fotos Pendientes -->
+    @if (fotosPendientes.length > 0) {
+      <section class="admin-seccion">
+        <h2 class="seccion-titulo pendiente-titulo">
+          <i class="pi pi-clock"></i> Pendientes de aprobación ({{ fotosPendientes.length }})
+        </h2>
+        <div class="fotos-grid">
+          @for (foto of fotosPendientes; track foto.id) {
+            <div class="foto-card pendiente">
+              <div class="foto-img-wrap">
+                <img [src]="foto.url" [alt]="foto.nombreOriginal" loading="lazy">
+                <span class="foto-badge pendiente-badge">Pendiente</span>
+              </div>
+              <div class="foto-nombre">{{ foto.nombreOriginal }}</div>
+              <div class="foto-acciones">
+                <button
+                  class="btn-aprobar"
+                  (click)="toggleAprobada(foto)"
+                  [disabled]="isProcesando(foto)">
+                  <i class="pi" [class.pi-spin]="isProcesando(foto)" [class.pi-spinner]="isProcesando(foto)" [class.pi-check]="!isProcesando(foto)"></i>
+                  Aprobar
+                </button>
+                <button
+                  class="btn-eliminar"
+                  (click)="eliminar(foto)"
+                  [disabled]="isProcesando(foto)">
+                  <i class="pi pi-trash"></i>
+                </button>
+              </div>
+            </div>
+          }
+        </div>
+      </section>
+    }
+
+    <!-- Fotos Aprobadas -->
+    @if (fotosAprobadas.length > 0) {
+      <section class="admin-seccion">
+        <h2 class="seccion-titulo aprobada-titulo">
+          <i class="pi pi-eye"></i> Publicadas en galería ({{ fotosAprobadas.length }})
+        </h2>
+        <div class="fotos-grid">
+          @for (foto of fotosAprobadas; track foto.id) {
+            <div class="foto-card aprobada">
+              <div class="foto-img-wrap">
+                <img [src]="foto.url" [alt]="foto.nombreOriginal" loading="lazy">
+                <span class="foto-badge aprobada-badge">Publicada</span>
+              </div>
+              <div class="foto-nombre">{{ foto.nombreOriginal }}</div>
+              <div class="foto-acciones">
+                <button
+                  class="btn-ocultar"
+                  (click)="toggleAprobada(foto)"
+                  [disabled]="isProcesando(foto)">
+                  <i class="pi" [class.pi-spin]="isProcesando(foto)" [class.pi-spinner]="isProcesando(foto)" [class.pi-eye-slash]="!isProcesando(foto)"></i>
+                  Ocultar
+                </button>
+                <button
+                  class="btn-eliminar"
+                  (click)="eliminar(foto)"
+                  [disabled]="isProcesando(foto)">
+                  <i class="pi pi-trash"></i>
+                </button>
+              </div>
+            </div>
+          }
+        </div>
+      </section>
+    }
+
+    @if (fotos.length === 0) {
+      <div class="admin-vacio">
+        <i class="pi pi-images"></i>
+        <p>No hay fotos todavía</p>
+      </div>
+    }
+  }
+</div>
+
+<!-- Modal subir foto -->
+@if (mostrarSubir) {
+  <app-subir-foto
+    (cerrar)="mostrarSubir = false"
+    (fotoSubida)="cargarFotos()">
+  </app-subir-foto>
+}

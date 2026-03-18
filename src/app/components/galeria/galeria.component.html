@@ -1,0 +1,52 @@
+<section class="galeria-section">
+  <div class="section-title">
+    <i class="pi pi-images"></i>
+    <h2>Galería</h2>
+  </div>
+
+  @if (cargando) {
+    <div class="galeria-cargando">
+      <i class="pi pi-spin pi-spinner"></i>
+      <span>Cargando fotos...</span>
+    </div>
+  } @else if (fotos.length === 0) {
+    <div class="galeria-vacia">
+      <i class="pi pi-camera"></i>
+      <p>Pronto habrá fotos aquí</p>
+    </div>
+  } @else {
+    <div class="galeria-grid">
+      @for (foto of fotos; track foto.id) {
+        <div class="galeria-item" (click)="abrirFoto(foto)">
+          <img [src]="foto.url" [alt]="foto.nombreOriginal" loading="lazy">
+          <div class="galeria-overlay">
+            <i class="pi pi-search-plus"></i>
+          </div>
+        </div>
+      }
+    </div>
+  }
+</section>
+
+<!-- Lightbox -->
+@if (fotoAmpliada) {
+  <div class="lightbox" (click)="cerrarFoto()">
+    <div class="lightbox-content" (click)="$event.stopPropagation()">
+      <button class="lightbox-nav prev" (click)="anterior()" [style.display]="fotos.length > 1 ? 'flex' : 'none'">
+        <i class="pi pi-chevron-left"></i>
+      </button>
+
+      <img [src]="fotoAmpliada.url" [alt]="fotoAmpliada.nombreOriginal" class="lightbox-img">
+
+      <button class="lightbox-nav next" (click)="siguiente()" [style.display]="fotos.length > 1 ? 'flex' : 'none'">
+        <i class="pi pi-chevron-right"></i>
+      </button>
+
+      <button class="lightbox-close" (click)="cerrarFoto()">
+        <i class="pi pi-times"></i>
+      </button>
+
+      <div class="lightbox-counter">{{ indiceActual + 1 }} / {{ fotos.length }}</div>
+    </div>
+  </div>
+}

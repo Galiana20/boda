@@ -1,0 +1,56 @@
+<div class="login-overlay" (click)="cerrar.emit()">
+  <div class="login-modal" (click)="$event.stopPropagation()">
+
+    @if (isLoggedIn) {
+      <div class="logged-in">
+        <div class="role-badge">
+          <i class="pi" [class.pi-shield]="role === 'admin'" [class.pi-camera]="role === 'fotosboda'"></i>
+          <span>{{ role === 'admin' ? 'Admin' : 'Invitado' }}</span>
+        </div>
+        <p class="logged-msg">Sesión iniciada correctamente</p>
+        <button class="btn-salir" (click)="salir()">
+          <i class="pi pi-sign-out"></i> Cerrar sesión
+        </button>
+      </div>
+    } @else {
+      <h2 class="login-title">
+        <i class="pi pi-lock"></i> Acceso privado
+      </h2>
+      <p class="login-subtitle">Introduce la contraseña para acceder</p>
+
+      <form (ngSubmit)="entrar()" class="login-form">
+        <div class="input-wrap">
+          <input
+            [type]="mostrarPassword ? 'text' : 'password'"
+            [(ngModel)]="password"
+            name="password"
+            placeholder="Contraseña"
+            class="password-input"
+            [class.input-error]="error"
+            autofocus>
+          <button type="button" class="toggle-eye" (click)="mostrarPassword = !mostrarPassword">
+            <i class="pi" [class.pi-eye]="!mostrarPassword" [class.pi-eye-slash]="mostrarPassword"></i>
+          </button>
+        </div>
+
+        @if (error) {
+          <p class="error-msg">
+            <i class="pi pi-exclamation-circle"></i> Contraseña incorrecta
+          </p>
+        }
+
+        <button type="submit" class="btn-entrar" [disabled]="!password || cargando">
+          @if (cargando) {
+            <i class="pi pi-spin pi-spinner"></i> Verificando...
+          } @else {
+            Entrar
+          }
+        </button>
+      </form>
+    }
+
+    <button class="btn-close" (click)="cerrar.emit()">
+      <i class="pi pi-times"></i>
+    </button>
+  </div>
+</div>

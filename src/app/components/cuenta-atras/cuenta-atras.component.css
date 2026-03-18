@@ -1,0 +1,66 @@
+.countdown-wrap {
+  text-align: center;
+  padding: 1rem 0;
+}
+
+.countdown-label {
+  font-family: 'Georgia', serif;
+  font-size: 1.1rem;
+  color: rgba(255,255,255,0.75);
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  margin: 0 0 1.5rem;
+}
+
+.countdown-grid {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.countdown-unit {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 80px;
+}
+
+.countdown-num {
+  font-size: clamp(2.5rem, 6vw, 4.5rem);
+  font-family: 'Georgia', serif;
+  font-weight: 400;
+  color: white;
+  line-height: 1;
+  letter-spacing: 2px;
+  text-shadow: 0 2px 12px rgba(0,0,0,0.3);
+  transition: transform 0.15s ease;
+}
+
+.countdown-unit:hover .countdown-num {
+  transform: scale(1.05);
+}
+
+.countdown-name {
+  font-size: 0.75rem;
+  color: rgba(255,255,255,0.65);
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  margin-top: 0.4rem;
+  font-family: 'Georgia', serif;
+}
+
+.countdown-sep {
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  color: rgba(255,255,255,0.4);
+  font-family: 'Georgia', serif;
+  align-self: flex-start;
+  margin-top: 0.1rem;
+  line-height: 1.1;
+}
+
+@media (max-width: 480px) {
+  .countdown-unit { min-width: 60px; }
+  .countdown-sep { font-size: 1.8rem; }
+}

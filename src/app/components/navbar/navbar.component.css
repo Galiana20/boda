@@ -1,0 +1,201 @@
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 900;
+  display: flex;
+  align-items: center;
+  padding: 0 2rem;
+  height: 64px;
+  transition: background 0.4s ease, box-shadow 0.4s ease;
+  background: transparent;
+}
+
+/* Sólido cuando hay scroll o en páginas sin hero */
+.navbar.scrolled {
+  background: rgba(15, 23, 70, 0.97);
+  backdrop-filter: blur(12px);
+  box-shadow: 0 2px 20px rgba(0,0,0,0.25);
+}
+
+/* ── Logo ─────────────────── */
+.nav-logo {
+  display: flex;
+  align-items: center;
+  gap: 0.1rem;
+  text-decoration: none;
+  font-family: 'Georgia', serif;
+  font-size: 1.5rem;
+  color: white;
+  letter-spacing: 2px;
+  flex-shrink: 0;
+}
+
+.logo-initials {
+  font-style: italic;
+  font-weight: 400;
+}
+
+.logo-amp {
+  color: #93c5fd;
+  font-size: 1.2rem;
+  margin: 0 0.2rem;
+}
+
+/* ── Links desktop ─────────── */
+.nav-links {
+  display: flex;
+  gap: 0.5rem;
+  margin: 0 auto;
+}
+
+.nav-link {
+  color: rgba(255,255,255,0.85);
+  text-decoration: none;
+  font-family: 'Georgia', serif;
+  font-size: 1rem;
+  padding: 0.5rem 1.1rem;
+  border-radius: 20px;
+  letter-spacing: 0.5px;
+  transition: all 0.25s;
+}
+
+.nav-link:hover { color: white; background: rgba(255,255,255,0.12); }
+.nav-link.active { color: white; background: rgba(255,255,255,0.18); }
+
+/* ── Acciones desktop ──────── */
+.nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-shrink: 0;
+}
+
+.nav-icon-btn {
+  background: rgba(255,255,255,0.12);
+  border: none;
+  color: white;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.25s;
+}
+
+.nav-icon-btn:hover { background: rgba(255,255,255,0.25); transform: scale(1.08); }
+.nav-icon-admin { color: #c4b5fd; }
+
+.nav-btn-login {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  background: rgba(255,255,255,0.15);
+  border: 1px solid rgba(255,255,255,0.35);
+  color: white;
+  padding: 0.45rem 1.1rem;
+  border-radius: 20px;
+  font-size: 0.9rem;
+  font-family: 'Georgia', serif;
+  cursor: pointer;
+  transition: all 0.25s;
+  letter-spacing: 0.3px;
+}
+
+.nav-btn-login:hover {
+  background: rgba(255,255,255,0.28);
+  border-color: rgba(255,255,255,0.6);
+}
+
+/* ── Hamburger ─────────────── */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 6px;
+  margin-left: auto;
+}
+
+.hamburger span {
+  display: block;
+  width: 24px;
+  height: 2px;
+  background: white;
+  border-radius: 2px;
+  transition: all 0.3s;
+  transform-origin: center;
+}
+
+.hamburger.active span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.hamburger.active span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+.hamburger.active span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+/* ── Menú móvil ───────────── */
+.mobile-menu {
+  position: fixed;
+  top: 64px;
+  left: 0;
+  right: 0;
+  z-index: 899;
+  background: rgba(10, 15, 50, 0.97);
+  backdrop-filter: blur(16px);
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+  gap: 0.3rem;
+  animation: slideDown 0.25s ease;
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+
+@keyframes slideDown {
+  from { opacity: 0; transform: translateY(-10px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.mobile-link {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  color: rgba(255,255,255,0.85);
+  text-decoration: none;
+  font-family: 'Georgia', serif;
+  font-size: 1.05rem;
+  padding: 0.9rem 1rem;
+  border-radius: 10px;
+  border: none;
+  background: none;
+  cursor: pointer;
+  text-align: left;
+  width: 100%;
+  transition: background 0.2s;
+  letter-spacing: 0.3px;
+}
+
+.mobile-link:hover,
+.mobile-link.active { background: rgba(255,255,255,0.1); color: white; }
+
+.mobile-link-admin { color: #c4b5fd; }
+.mobile-link-login {
+  margin-top: 0.5rem;
+  border-top: 1px solid rgba(255,255,255,0.1);
+  padding-top: 1rem;
+  color: #93c5fd;
+}
+
+/* ── Responsive ───────────── */
+@media (max-width: 768px) {
+  .nav-links,
+  .nav-actions { display: none; }
+
+  .hamburger { display: flex; }
+
+  .navbar { padding: 0 1.2rem; }
+}
