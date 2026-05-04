@@ -31,6 +31,7 @@ export class HomeComponent {
   alergenos = '';
 
   numeroCuenta = 'ES19 0128 7820 8401 0383 8162';
+  numeroCuentaEric = 'ES08 1544 7889 7766 5222 6482';
   telefono1 = '+34 607 94 31 26';
   telefono2 = '+34 628 52 51 72';
   tel1Href = 'tel:+34607943126';
@@ -93,6 +94,11 @@ export class HomeComponent {
 
   copiarCuenta() {
     navigator.clipboard.writeText(this.numeroCuenta);
+    alert('Número de cuenta copiado al portapapeles');
+  }
+
+  copiarCuentaEric() {
+    navigator.clipboard.writeText(this.numeroCuentaEric);
     alert('Número de cuenta copiado al portapapeles');
   }
 }
